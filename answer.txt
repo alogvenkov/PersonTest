@@ -1,1 +1,26 @@
+По изначальному условию, метод isTeenager() должен был принимать возраст от 13 до 19 за возраст тинейджеров.
+Failed tests:
+1. PersonTest.testIsTeenager_0yearsOld(PersonTest) - Возраст 0: Ожидалось, что метод вернет false, но он вернул true. Метод неправильно считает, что новорожденный является тинейджером.
+2. PersonTest.testIsTeenager_12yarsOld - Возраст 12: Ожидалось, что метод вернет false, но он вернул true. Метод неправильно считает, что 12-летний человек является тинейджером.
+3. PersonTest.testIsTeenager_19yearsOld - Возраст 19: Ожидалось, что метод вернет true, но он вернул false. Метод неправильно считает, что 19-летний человек не является тинейджером.
+                                                        Ошибка в методе
 
+public class Person {
+    public static boolean isTeenager(int age) {
+        boolean result;
+        if (age < 19) { // в даной строке допущена ошибка. при данном написании метода, любого человка меньше 19 лет считают тинейджером. хотя по условию тинейджером должен считаться  человек от 13 до 19 лет включительно.
+            result = true;
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+}
+
+правильный код должен выглядеть так:
+public class Person {
+    public static boolean isTeenager(int age) {
+        return age >= 13 && age <= 19;
+    }
+}
